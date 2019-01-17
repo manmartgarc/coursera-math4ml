@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-I
 """
 Created on Thu Jan 17 00:38:53 2019
 
@@ -21,7 +21,7 @@ def mag(x):
     """
     Returns the magnitude of vector x
     """
-    return round(sum([i ** 2 for i in x]) ** 0.5, 1)
+    return sum([i ** 2 for i in x]) ** 0.5
 
 
 def change_basis(v, a, b):
@@ -35,4 +35,6 @@ def change_basis(v, a, b):
 
     x = round(dot(v, a) / mag(a) ** 2, 1)
     y = round(dot(v, b) / mag(b) ** 2, 1)
-    return [x, y]
+    va = [i * x for i in a]
+    vb = [i * y for i in b]
+    return [x, y], va, vb
