@@ -28,6 +28,11 @@ def change_basis(v, a, b):
     """
     Change the basis of v with respect to a, b.
     """
+
+    # check for orthogonality of a, b
+    if dot(a, b) != 0:
+        raise ValueError('a & b are not orthogonal')
+
     x = round(dot(v, a) / mag(a) ** 2, 1)
     y = round(dot(v, b) / mag(b) ** 2, 1)
     return [x, y]
