@@ -6,7 +6,7 @@ Created on Thu Jan 17 00:38:53 2019
 @purpose:   This script has some functions for homework the homework
             on Course 1
 """
-
+import itertools
 # %% Week 2
 
 
@@ -24,17 +24,23 @@ def mag(x):
     return sum([i ** 2 for i in x]) ** 0.5
 
 
-def change_basis(v, a, b):
+def change_basis(*args, v):
     """
-    Change the basis of v with respect to a, b.
+    Change the basis of v with respect to n vectors.
     """
+    # check for orthogonality of args
+    x = [dot(a, b) for a, b in itertools.combinations(args, 2)]
+    if min(x) != 0:
+        raise ValueError('one of the pairs of basis vectors '
+                         'are not orthogonal.')
 
-    # check for orthogonality of a, b
-    if dot(a, b) != 0:
-        raise ValueError('a & b are not orthogonal')
+    # calculate scalar projections
+    comp_vi = [round(dot(v, arg) / mag(arg) ** 2, 1) for arg in args]
 
-    x = round(dot(v, a) / mag(a) ** 2, 1)
-    y = round(dot(v, b) / mag(b) ** 2, 1)
-    va = [i * x for i in a]
-    vb = [i * y for i in b]
-    return [x, y], va, vb
+    # calculate vector projections
+    proj_vi = [[elem * i for elem in v] for i in comp_vi]
+
+    prompt1 = 'scalars are [{}, {}]'.format(*comp_vi)
+    prompt2 = 'vectors are [{}, {}]'.format(*proj_vi)
+
+    return print('\n'.join([prompt1, prompt2]))
