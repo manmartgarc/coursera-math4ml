@@ -34,7 +34,7 @@ def change_basis(*args, v):
         raise ValueError('one of the pairs of basis vectors '
                          'are not orthogonal.')
 
-    # calculate scalar projections
+    # calculate scalars for vector projection
     comp_vi = [round(dot(v, arg) / mag(arg) ** 2, 1) for arg in args]
 
     # calculate vector projections
