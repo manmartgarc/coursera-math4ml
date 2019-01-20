@@ -14,7 +14,7 @@ def dot(a, b):
     """
     Take the inner (dot) product of vectors [a, b]
     """
-    return round(sum([a[i] * b[i] for i in range(len(a))]), 1)
+    return round(sum([a * b for a, b in zip(a, b)]), 1)
 
 
 def mag(x):
